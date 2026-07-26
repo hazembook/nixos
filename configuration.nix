@@ -19,7 +19,21 @@
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
-  time.timeZone = "America/Los_Angeles";
+  time.timeZone = "Africa/Tripoli";
+
+  services.keyd = {
+    enable = true;
+    keyrings = {
+      defaults = {
+        ids = [ "*" ];
+        settings = {
+          main {
+            capslock = "overload(control, esc)";
+            esc = "capslock";
+          }
+        }
+    };
+  };
 
   # Light, fast display manager
   services.displayManager.ly.enable = true;
