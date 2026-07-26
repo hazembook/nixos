@@ -13,6 +13,12 @@
     inputs.noctalia.nixosModules.default
   ];
 
+  boot.kernelParams = [
+    "quiet"
+    "loglevel=3"
+    "acpi.debug_level=0"
+  ];
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
