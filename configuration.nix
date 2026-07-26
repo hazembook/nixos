@@ -14,7 +14,6 @@
   ];
 
   boot.kernelParams = [
-    "quiet"
     "loglevel=3"
     "acpi.debug_level=0"
   ];
@@ -29,15 +28,16 @@
 
   services.keyd = {
     enable = true;
-    keyrings = {
+    keyboards = {
       defaults = {
         ids = [ "*" ];
         settings = {
-          main {
+          main = {
             capslock = "overload(control, esc)";
             esc = "capslock";
-          }
-        }
+          };
+        };
+      };
     };
   };
 
