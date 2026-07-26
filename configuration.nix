@@ -2,12 +2,15 @@
   config,
   lib,
   pkgs,
+  inputs, # Accepted inputs from specialArgs
   ...
 }:
 
 {
   imports = [
     ./hardware-configuration.nix
+    # Import Noctalia system services
+    inputs.noctalia.nixosModules.default
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -18,19 +21,39 @@
 
   time.timeZone = "America/Los_Angeles";
 
+  # Light, fast display manager
   services.displayManager.ly.enable = true;
-  services.xserver = {
+
+  # Enable Niri compositor
+  programs.niri.enable = true;
+
+  # Polkit daemon (essential for Wayland session permissions)
+  security.polkit.enable = true;
+
+  # Sound settings via Pipewire
+  services.pipewire = {
     enable = true;
-    autoRepeatDelay = 200;
-    autoRepeatInterval = 35;
-    windowManager.qtile.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  # Enable system services for Noctalia
+  programs.noctalia = {
+    enable = true;
+    recommendedServices.enable = true; # Automatically manages UPower and Power profiles
   };
 
   services.openssh.enable = true;
 
   users.users.hazem = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "audio"
+    ];
     packages = with pkgs; [
       tree
     ];
@@ -41,8 +64,10 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-    alacritty
     git
+    # Wayland / Niri helper utilities
+    wl-clipboard
+    brightnessctl
   ];
 
   fonts.packages = with pkgs; [
@@ -53,6 +78,7 @@
     "nix-command"
     "flakes"
   ];
-  system.stateVersion = "26.05";
 
+  nixpkgs.config.allowUnfree = true;
+  system.stateVersion = "26.05";
 }
