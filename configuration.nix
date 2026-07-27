@@ -13,10 +13,18 @@
     inputs.noctalia.nixosModules.default
   ];
 
+  # Boot logs enabled, ACPI errors suppressed
   boot.kernelParams = [
-    "loglevel=3"
-    "acpi.debug_level=0"
+    "systemd.show_status=1"
+    "loglevel=2"
   ];
+
+  security.doas = {
+    enable = true;
+    extraConfig = ''
+      permit nopass hazem as root
+    '';
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -46,6 +54,7 @@
 
   # Enable Niri compositor
   programs.niri.enable = true;
+  programs.gpu-screen-recorder.enable = true;
 
   # Polkit daemon (essential for Wayland session permissions)
   security.polkit.enable = true;
@@ -56,6 +65,30 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+  };
+
+  # Portal configuration for Niri & Wayland screen recording
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    config = {
+      common = {
+        default = [
+          "wlr"
+          "gtk"
+        ];
+      };
+      niri = {
+        # lib.mkForce overrides Niri's built-in default ("gnome;gtk")
+        default = lib.mkForce [
+          "wlr"
+          "gtk"
+        ];
+      };
+    };
   };
 
   # Enable system services for Noctalia
@@ -90,8 +123,10 @@
     brightnessctl
   ];
 
+  # System-wide fonts (JetBrains Mono + Amiri for Hijri Widget)
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+    amiri
   ];
 
   nix.settings.experimental-features = [

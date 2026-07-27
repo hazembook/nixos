@@ -1,4 +1,5 @@
 # ignored until I figure out how to handle the git submodules
-config/nvim
-config/qtile
-config/shells
+config/
+
+flake.lock
+hardware-configuration.nix

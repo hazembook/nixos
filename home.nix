@@ -13,7 +13,8 @@ let
   configs = {
     nvim = "nvim";
     fish = "shells/fish";
-    niri = "niri"; # Dynamically symlinks ~/.config/niri -> ~/nixos-dotfiles/config/niri
+    niri = "niri";
+    noctalia = "noctalia";
   };
 in
 
@@ -38,22 +39,6 @@ in
     inputs.noctalia.homeModules.default
   ];
 
-  # Declaratively configure Noctalia's user runtime
-  programs.noctalia = {
-    enable = true;
-    settings = {
-      theme = {
-        mode = "dark";
-        source = "builtin";
-        builtin = "Catppuccin";
-      };
-      wallpaper = {
-        enabled = true;
-        default.path = "${config.home.homeDirectory}/Pictures/wallpaper.png";
-      };
-    };
-  };
-
   # Map your configs to ~/.config
   xdg.configFile = builtins.mapAttrs (name: subpath: {
     source = create_symlink "${dotfiles}/${subpath}";
@@ -72,9 +57,16 @@ in
     btop
     yazi
     fastfetch
+    jq
+    curl
 
     # Compiler tools needed by lazy.nvim
     gcc
     gnumake
+
+    # Required for Noctalia Screen Recoder Plugin
+    ffmpeg
+    slurp
+    grim
   ];
 }
