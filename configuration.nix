@@ -97,6 +97,13 @@
 
   services.openssh.enable = true;
 
+  # Virtualisation
+  virtualisation.libvirtd.enable = true;
+  virtualisation.docker.enable = true;
+
+  # Printing
+  services.printing.enable = true;
+
   users.users.hazem = {
     isNormalUser = true;
     extraGroups = [
@@ -104,9 +111,8 @@
       "networkmanager"
       "video"
       "audio"
-    ];
-    packages = with pkgs; [
-      tree
+      "libvirt"
+      "docker"
     ];
   };
 
@@ -142,6 +148,16 @@
 
     # Build tools
     gcc gnumake ffmpeg tectonic zathura
+    tree
+
+    # Virtualisation tools
+    libvirt virt-manager qemu cloud-utils
+
+    # Container runtimes
+    docker podman
+
+    # VM deployment dependencies
+    openssl
 
     # Wayland screenshot
     slurp grim
