@@ -6,7 +6,8 @@
 }:
 
 let
-  dots = "${config.home.homeDirectory}/nixos-config/dots";
+  dotsLocal = "${config.home.homeDirectory}/nixos-config/dots";
+  dots = if builtins.pathExists dotsLocal then dotsLocal else inputs.dots;
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 
   # Standard .config/directory mappings

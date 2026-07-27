@@ -28,6 +28,12 @@
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    dots = {
+      url = "codeberg:hazembook/dotfiles";
+      flake = false;
+      submodules = true;
+    };
   };
 
   outputs =
@@ -37,6 +43,7 @@
       home-manager,
       noctalia,
       emacs-overlay,
+      dots,
       ...
     }@inputs:
     {
