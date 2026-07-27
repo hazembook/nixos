@@ -57,12 +57,7 @@ in
     ".tmux.conf.local".source = create_symlink "${dots}/tmux.conf.local";
   };
 
-  home.sessionVariables = {
-    DOOMLOCALDIR = "$XDG_DATA_HOME/doom";
-    DOOMPROFILELOADFILE = "$XDG_STATE_HOME/doom-profiles-load.el";
-  };
-
-  home.sessionPath = [ "$HOME/.config/emacs/bin" ];
+  home.sessionPath = [ "${config.home.homeDirectory}/.config/emacs/bin" ];
 
   home.packages = with pkgs; [
     tmux fish ghostty htop btop yazi fastfetch lsd
