@@ -11,12 +11,6 @@
     inputs.noctalia.nixosModules.default
   ] ++ lib.optional (builtins.pathExists ./hardware-configuration.nix) ./hardware-configuration.nix;
 
-  # Boot logs enabled, ACPI errors suppressed
-  boot.kernelParams = [
-    "systemd.show_status=1"
-    "loglevel=2"
-  ];
-
   security.doas = {
     enable = true;
     extraConfig = ''
