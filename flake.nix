@@ -1,5 +1,5 @@
 {
-  description = "NixOS from Scratch";
+  description = "Hazem's NixOS configuration";
 
   nixConfig = {
     extra-substituters = [
@@ -40,7 +40,7 @@
       ...
     }@inputs:
     {
-      nixosConfigurations.nixbook = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.lenovo-v145 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # Pass inputs to configuration.nix
         specialArgs = { inherit inputs; };

@@ -8,10 +8,8 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-    # Import Noctalia system services
     inputs.noctalia.nixosModules.default
-  ];
+  ] ++ lib.optional (builtins.pathExists ./hardware-configuration.nix) ./hardware-configuration.nix;
 
   # Boot logs enabled, ACPI errors suppressed
   boot.kernelParams = [
@@ -29,7 +27,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos";
+  networking.hostName = "lenovo-v145";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Africa/Tripoli";
