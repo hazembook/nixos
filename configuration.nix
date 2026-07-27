@@ -115,13 +115,34 @@
   programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-    # Wayland / Niri helper utilities
-    wl-clipboard
-    brightnessctl
+    # Core system
+    vim wget git wl-clipboard brightnessctl
+
+    # Shell & terminal tools
+    jq curl ripgrep fd fzf
+
+    # Editor: Neovim
+    neovim nodejs
+
+    # Language Servers
+    lua-language-server nil nixpkgs-fmt bash-language-server
+
+    # Editor: Emacs (from emacs-overlay, Wayland-native)
+    emacs30-pgtk
+
+    # Development toolchain
+    go rustup zoxide atuin yt-dlp entr kubectl catt
+    jdk17 android-tools
+
+    # Build tools
+    gcc gnumake ffmpeg
+
+    # Wayland screenshot
+    slurp grim
   ];
+
+  # Add emacs-overlay for modern Emacs builds
+  nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
 
   # System-wide fonts (JetBrains Mono + Amiri for Hijri Widget)
   fonts.packages = with pkgs; [
@@ -129,10 +150,11 @@
     amiri
   ];
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    substituters = [ "https://nix-community.cachix.org" ];
+    trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+  };
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "26.05";

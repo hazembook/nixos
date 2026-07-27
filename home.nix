@@ -6,15 +6,16 @@
 }:
 
 let
-  dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
+  dots = "${config.home.homeDirectory}/nixos-config/dots";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 
   # Standard .config/directory mappings
   configs = {
     nvim = "nvim";
-    fish = "shells/fish";
+    fish = "fish";
     niri = "niri";
     noctalia = "noctalia";
+    doom = "doom";
   };
 in
 
@@ -27,46 +28,43 @@ in
   programs.bash = {
     enable = true;
     bashrcExtra = ''
-      if [ -f ${dotfiles}/shells/bash/.bashrc ]; then
-        source ${dotfiles}/shells/bash/.bashrc
+      if [ -f ${dots}/bash/.bashrc ]; then
+        source ${dots}/bash/.bashrc
       fi
     '';
   };
 
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+      package.disabled = true;
+      aws.disabled = true;
+    };
+  };
+
   imports = [
-    ./modules/neovim.nix
-    # Import Noctalia user options
     inputs.noctalia.homeModules.default
   ];
 
   # Map your configs to ~/.config
   xdg.configFile = builtins.mapAttrs (name: subpath: {
-    source = create_symlink "${dotfiles}/${subpath}";
+    source = create_symlink "${dots}/${subpath}";
   }) configs;
 
+  home.file = {
+    ".tmux.conf".source = create_symlink "${dots}/tmux/.tmux.conf";
+    ".tmux.conf.local".source = create_symlink "${dots}/tmux.conf.local";
+  };
+
+  home.sessionVariables = {
+    DOOMLOCALDIR = "$XDG_DATA_HOME/doom";
+    DOOMPROFILELOADFILE = "$XDG_STATE_HOME/doom-profiles-load.el";
+  };
+
+  home.sessionPath = [ "$HOME/.config/emacs/bin" ];
+
   home.packages = with pkgs; [
-    # Shell & multiplexer environment
-    tmux
-    fish
-    starship
-    lsd
-    ghostty
-
-    # Utilities
-    htop
-    btop
-    yazi
-    fastfetch
-    jq
-    curl
-
-    # Compiler tools needed by lazy.nvim
-    gcc
-    gnumake
-
-    # Required for Noctalia Screen Recoder Plugin
-    ffmpeg
-    slurp
-    grim
+    tmux fish ghostty htop btop yazi fastfetch lsd
   ];
 }

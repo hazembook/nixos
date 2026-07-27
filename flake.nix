@@ -2,9 +2,13 @@
   description = "NixOS from Scratch";
 
   nixConfig = {
-    extra-substituters = [ "https://noctalia.cachix.org" ];
+    extra-substituters = [
+      "https://noctalia.cachix.org"
+      "https://nix-community.cachix.org"
+    ];
     extra-trusted-public-keys = [
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
 
@@ -19,6 +23,11 @@
     # Pinning to "cachix" branch for cached pre-built binaries.
     # We do NOT use follows = "nixpkgs" here to ensure we hit the binary cache.
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
+
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -27,6 +36,7 @@
       nixpkgs,
       home-manager,
       noctalia,
+      emacs-overlay,
       ...
     }@inputs:
     {

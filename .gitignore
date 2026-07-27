@@ -1,5 +1,2 @@
-# ignored until I figure out how to handle the git submodules
-config/
-
 flake.lock
 hardware-configuration.nix
