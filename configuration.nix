@@ -137,6 +137,9 @@
 
     # Wayland screenshot
     slurp grim
+
+    # Process management (killall, fuser, pstree, pidof)
+    psmisc
   ];
 
   # Add emacs-overlay for modern Emacs builds
