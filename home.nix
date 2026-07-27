@@ -16,6 +16,9 @@ let
     niri = "niri";
     noctalia = "noctalia";
     doom = "doom";
+    ghostty = "ghostty";
+    alacritty = "alacritty";
+    fastfetch = "fastfetch";
   };
 in
 
@@ -60,6 +63,6 @@ in
   home.sessionPath = [ "${config.home.homeDirectory}/.config/emacs/bin" ];
 
   home.packages = with pkgs; [
-    tmux fish ghostty htop btop yazi fastfetch lsd
+    tmux fish ghostty alacritty htop btop yazi fastfetch lsd
   ];
 }
