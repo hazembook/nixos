@@ -117,13 +117,16 @@
     vim wget git wl-clipboard brightnessctl
 
     # Shell & terminal tools
-    jq curl ripgrep fd fzf
+    jq curl ripgrep fd fzf trash-cli unzip unrar p7zip zstd glow
 
     # Editor: Neovim
     neovim nodejs
 
     # Language Servers
     lua-language-server nil nixpkgs-fmt bash-language-server
+    clang-tools gopls pyright ruff
+    texlab tinymist zls deno
+    vscode-langservers-extracted
 
     # Editor: Emacs (from emacs-overlay, Wayland-native)
     emacs30-pgtk
@@ -131,24 +134,36 @@
     # Development toolchain
     go rustup zoxide atuin yt-dlp entr kubectl catt
     jdk17 android-tools
+    lazygit python3 black pipenv python3Packages.pytest
+    ruby rubocop ruby-lsp
+    gotests gore gomodifytags
+    delve zig ktlint nixfmt shfmt shellcheck
+    pandoc
 
     # Build tools
-    gcc gnumake ffmpeg
+    gcc gnumake ffmpeg tectonic zathura
 
     # Wayland screenshot
     slurp grim
 
     # Process management (killall, fuser, pstree, pidof)
     psmisc
+
+    # Network monitoring
+    nethogs
+
+    # Browser
+    chromium
   ];
 
   # Add emacs-overlay for modern Emacs builds
   nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
 
-  # System-wide fonts (JetBrains Mono + Amiri for Hijri Widget)
+  # System-wide fonts
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
-    amiri
+    nerd-fonts.symbols-only  # Doom Emacs icons & fallback glyphs
+    amiri                     # Hijri Widget
   ];
 
   nix.settings = {
