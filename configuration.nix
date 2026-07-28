@@ -89,6 +89,16 @@
     recommendedServices.enable = true; # Automatically manages UPower and Power profiles
   };
 
+  # Power management (TLP)
+  services.tlp = {
+    enable = true;
+    settings = {
+      # Long_Life charge mode
+      START_CHARGE_THRESH_BAT0 = 0;
+      STOP_CHARGE_THRESH_BAT0 = 1;
+    };
+  };
+
   services.openssh.enable = true;
 
   # Virtualisation
