@@ -51,6 +51,9 @@
   programs.niri.enable = true;
   programs.gpu-screen-recorder.enable = true;
 
+  # Wayland session environment (Chromium, Electron apps)
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   # Polkit daemon (essential for Wayland session permissions)
   security.polkit.enable = true;
 
