@@ -63,6 +63,6 @@ in
   home.sessionPath = [ "${config.home.homeDirectory}/.config/emacs/bin" ];
 
   home.packages = with pkgs; [
-    tmux fish ghostty alacritty htop btop yazi fastfetch lsd
+    tmux ghostty alacritty htop btop yazi fastfetch lsd
   ];
 }
