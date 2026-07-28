@@ -89,6 +89,9 @@
     recommendedServices.enable = true; # Automatically manages UPower and Power profiles
   };
 
+  # TLP handles power management instead of power-profiles-daemon
+  services.power-profiles-daemon.enable = false;
+
   # Power management (TLP)
   services.tlp = {
     enable = true;
