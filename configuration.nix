@@ -146,7 +146,7 @@
     lua-language-server nil nixpkgs-fmt bash-language-server
     clang-tools gopls pyright ruff
     texlab tinymist zls deno
-    vscode-langservers-extracted
+    vscode-langservers-extracted tree-sitter biber
 
     # Editor: Emacs (from emacs-overlay, Wayland-native)
     emacs30-pgtk
@@ -158,10 +158,10 @@
     ruby rubocop ruby-lsp
     gotests gore gomodifytags
     delve zig ktlint nixfmt shfmt shellcheck
-    pandoc
+    pandoc zathura
 
     # Build tools
-    gcc gnumake ffmpeg tectonic zathura
+    gcc gnumake ffmpeg tectonic typst
     tree
 
     # Virtualisation tools
@@ -181,6 +181,9 @@
 
     # Network monitoring
     nethogs
+
+    # TeX bibliography tools (for Neovim checkhealth)
+    (texlive.combine { pkgs = [ texlive.pkgs.bibtex ]; })
 
     # Browser
     chromium
