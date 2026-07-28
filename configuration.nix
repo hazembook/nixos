@@ -44,13 +44,8 @@
   # Light, fast display manager
   services.displayManager.ly.enable = true;
 
-  # Fish shell: bash stays as login shell, execs fish interactively
+  # Fish shell
   programs.fish.enable = true;
-  programs.bash.interactiveShellInit = ''
-    if grep -qv fish /proc/$PPID/comm && [[ $SHLVL == [12] ]]; then
-        SHELL=${pkgs.fish}/bin/fish exec fish
-    fi
-  '';
 
   # Enable Niri compositor
   programs.niri.enable = true;
@@ -121,6 +116,7 @@
 
   users.users.hazem = {
     isNormalUser = true;
+    shell = pkgs.fish;
     extraGroups = [
       "wheel"
       "networkmanager"
