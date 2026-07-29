@@ -18,6 +18,7 @@
   home-manager.users.hazem.home.packages = with pkgs; [
     brightnessctl
     wl-clipboard
+    xclip
     slurp grim
   ];
 

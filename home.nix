@@ -65,7 +65,7 @@ in
     go rustup 
     jdk17 android-tools
     lazygit
-    pandoc zathura
+    pandoc zathura xdotool
     ffmpeg tectonic typst
     nethogs
     chromium
