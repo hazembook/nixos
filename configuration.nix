@@ -183,7 +183,7 @@
     nethogs
 
     # TeX bibliography tools (for Neovim checkhealth)
-    (texlive.combine { pkgs = [ texlive.pkgs.bibtex ]; })
+    texliveSmall
 
     # Browser
     chromium
