@@ -64,5 +64,16 @@ in
 
   home.packages = with pkgs; [
     tmux ghostty alacritty htop btop yazi fastfetch lsd
+    ripgrep fd fzf trash-cli unzip unrar p7zip zstd glow
+    zoxide atuin yt-dlp entr kubectl catt
+    go rustup 
+    jdk17 android-tools
+    lazygit
+    pandoc zathura
+    ffmpeg tectonic typst
+    nethogs
+    chromium
+    libvirt virt-manager qemu cloud-utils
+    docker podman
   ];
 }
