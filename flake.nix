@@ -57,7 +57,10 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
+              sharedModules = [
+                inputs.plasma-manager.homeModules.plasma-manager
+                inputs.noctalia.homeModules.default
+              ];
               # Pass inputs to home.nix
               extraSpecialArgs = { inherit inputs; };
               users.hazem = import ./home.nix;
