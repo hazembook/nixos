@@ -9,9 +9,6 @@
 
   services.orca.enable = false;
 
-  security.pam.services.kde.kwallet.enable = false;
-  security.pam.services.login.kwallet.enable = false;
-
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     plasma-browser-integration
     elisa
@@ -19,8 +16,6 @@
     krdp
     discover
   ];
-
-  home-manager.users.hazem.imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
 
   home-manager.users.hazem.programs.plasma = {
     enable = true;

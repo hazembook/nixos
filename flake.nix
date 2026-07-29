@@ -57,6 +57,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
+              sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
               # Pass inputs to home.nix
               extraSpecialArgs = { inherit inputs; };
               users.hazem = import ./home.nix;
