@@ -46,10 +46,6 @@ in
     };
   };
 
-  imports = [
-    inputs.noctalia.homeModules.default
-  ];
-
   # Map your configs to ~/.config
   xdg.configFile = builtins.mapAttrs (name: subpath: {
     source = create_symlink "${dots}/${subpath}";

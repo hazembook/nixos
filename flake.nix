@@ -28,6 +28,11 @@
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -37,6 +42,7 @@
       home-manager,
       noctalia,
       emacs-overlay,
+      plasma-manager,
       ...
     }@inputs:
     {
