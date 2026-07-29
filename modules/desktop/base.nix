@@ -16,9 +16,13 @@
   # services.displayManager.ly.enable = true;
 
   home-manager.users.hazem.home.packages = with pkgs; [
+    # Backlight
     brightnessctl
-    wl-clipboard
-    xclip
+
+    # Clipboard
+    wl-clipboard xclip
+
+    # Screenshot
     slurp grim
   ];
 

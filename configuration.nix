@@ -53,12 +53,11 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vim wget curl git jq
+    # Base CLI
+    vim wget curl git jq tree openssl psmisc
+
+    # Build tools
     gcc gnumake
-    tree
-    openssl
-    # for killall
-    psmisc
   ];
 
   fonts.packages = with pkgs; [
