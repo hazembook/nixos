@@ -66,6 +66,8 @@ in
     unzip unrar p7zip zstd
     zoxide atuin glow trash-cli jq entr lazygit gh glab cotp pass
 
+    bat eza curlie rclone dust
+
     ffmpeg mpv pandoc zathura xdotool tectonic typst
 
     rustup
@@ -76,6 +78,6 @@ in
 
     chromium
 
-    libvirt virt-manager qemu cloud-utils kubectl docker podman
+    libvirt virt-manager qemu cloud-utils
   ];
 }

@@ -28,8 +28,12 @@
 
   programs.fish.enable = true;
 
+  programs.nix-ld.enable = true;
+
   virtualisation.libvirtd.enable = true;
+  virtualisation.containers.enable = true;
   virtualisation.docker.enable = true;
+  virtualisation.podman.enable = true;
 
   programs.firefox.enable = true;
 
