@@ -24,4 +24,12 @@
       };
     };
   };
+
+  services.displayManager = {
+    autoLogin = {
+      enable = true;
+      user = "hazem";
+    };
+    defaultSession = "niri";
+  };
 }
