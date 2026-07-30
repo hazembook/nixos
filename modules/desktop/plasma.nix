@@ -5,8 +5,6 @@
     enableQt5Integration = false;
   };
 
-  services.displayManager.plasma-login-manager.enable = true;
-
   services.orca.enable = false;
 
   environment.plasma6.excludePackages = with pkgs.kdePackages; [

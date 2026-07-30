@@ -11,9 +11,16 @@
     pulse.enable = true;
   };
 
-  # Lightweight display manager for standalone Niri setup.
-  # Uncomment for a minimal Niri-only setup (KDE Plasma's SDDM handles both sessions).
-  # services.displayManager.ly.enable = true;
+  services.displayManager.ly.enable = false;
+
+  services.displayManager = {
+    plasma-login-manager.enable = true;
+    autoLogin = {
+      enable = true;
+      user = "hazem";
+    };
+    defaultSession = "niri";
+  };
 
   home-manager.users.hazem.home.packages = with pkgs; [
     # Backlight
