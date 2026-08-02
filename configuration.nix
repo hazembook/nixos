@@ -58,6 +58,7 @@
 
   environment.systemPackages = with pkgs; [
     gcc gnumake git wget vim psmisc
+    cmake binutils gdb pkg-config
   ];
 
   fonts.packages = with pkgs; [
