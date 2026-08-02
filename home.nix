@@ -59,28 +59,23 @@ in
   home.sessionPath = [ "${config.home.homeDirectory}/.config/emacs/bin" ];
 
   home.packages = with pkgs; [
-    # Terminal
-    tmux ghostty alacritty htop btop yazi fastfetch lsd
-    ripgrep fd fzf trash-cli unzip unrar p7zip zstd glow
-    zoxide atuin lazygit
+    ghostty alacritty tmux
+    htop btop
+    yazi fastfetch lsd tree
+    ripgrep fd fzf
+    unzip unrar p7zip zstd
+    zoxide atuin glow trash-cli jq entr lazygit gh glab cotp pass
 
-    # Media & docs
-    ffmpeg pandoc zathura xdotool tectonic typst
+    ffmpeg mpv pandoc zathura xdotool tectonic typst
 
-    # Rust
     rustup
 
-    # Java / Android
     jdk17 android-tools
 
-    # Network
-    nethogs yt-dlp entr kubectl catt
+    nethogs yt-dlp openssl
 
-    # Browser
     chromium
 
-    # Virtualisation
-    libvirt virt-manager qemu cloud-utils
-    docker podman
+    libvirt virt-manager qemu cloud-utils kubectl docker podman
   ];
 }
