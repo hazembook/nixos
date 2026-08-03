@@ -15,6 +15,9 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-26.05";
 
+    # Used to get newer versions of specific packages (opencode, ...).
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,6 +45,17 @@
     {
       nixosConfigurations.nixbook = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        nixpkgs.overlays = [
+          (_final: prev: let
+            system = prev.stdenv.hostPlatform.system;
+            unstable = import inputs.nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+          in {
+            opencode = unstable.opencode;
+          })
+        ];
         # Pass inputs to configuration.nix
         specialArgs = { inherit inputs; };
         modules = [

@@ -77,6 +77,8 @@ in
 
     nethogs yt-dlp openssl
 
+    opencode tealdeer
+
     chromium
 
     libvirt virt-manager qemu cloud-utils
