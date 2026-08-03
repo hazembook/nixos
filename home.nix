@@ -54,6 +54,7 @@ in
   home.file = {
     ".tmux.conf".source = create_symlink "${dots}/tmux/.tmux.conf";
     ".tmux.conf.local".source = create_symlink "${dots}/tmux.conf.local";
+    ".gitconfig".source = create_symlink "${dots}/git/.gitconfig";
   };
 
   home.sessionPath = [ "${config.home.homeDirectory}/.config/emacs/bin" ];
