@@ -6,6 +6,7 @@
 
     # Runtimes
     nodejs python3 ruby
+    lua5_1 lua51Packages.luarocks
 
     # LSPs
     lua-language-server nil nixpkgs-fmt bash-language-server

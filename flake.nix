@@ -58,6 +58,7 @@
                 };
               in {
                 opencode = unstable.opencode;
+                telegram-desktop = unstable.telegram-desktop;
               })
             ];
           }

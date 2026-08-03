@@ -3,6 +3,10 @@
   services.openssh.enable = true;
   services.printing.enable = true;
 
+  services.tailscale.enable = true;
+
+  hardware.bluetooth.enable = true;
+
   services.keyd = {
     enable = true;
     keyboards = {

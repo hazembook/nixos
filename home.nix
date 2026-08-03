@@ -19,6 +19,7 @@ let
     ghostty = "ghostty";
     alacritty = "alacritty";
     fastfetch = "fastfetch";
+    rofi = "rofi";
   };
 in
 
@@ -78,6 +79,10 @@ in
     nethogs yt-dlp openssl
 
     opencode tealdeer
+
+    obsidian obs-studio hugo
+    just lazydocker git-filter-repo
+    telegram-desktop topgrade rofi
 
     chromium
 
