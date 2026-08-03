@@ -9,7 +9,7 @@
     ./modules/desktop/noctalia.nix
   ] ++ lib.optional (builtins.pathExists ./hardware-configuration.nix) ./hardware-configuration.nix;
 
-  networking.hostName = "lenovo-v145";
+  networking.hostName = "nixbook";
   networking.networkmanager.enable = true;
 
   security.doas = {

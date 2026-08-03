@@ -40,7 +40,7 @@
       ...
     }@inputs:
     {
-      nixosConfigurations.lenovo-v145 = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.nixbook = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         # Pass inputs to configuration.nix
         specialArgs = { inherit inputs; };
