@@ -45,20 +45,22 @@
     {
       nixosConfigurations.nixbook = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        nixpkgs.overlays = [
-          (_final: prev: let
-            system = prev.stdenv.hostPlatform.system;
-            unstable = import inputs.nixpkgs-unstable {
-              inherit system;
-              config.allowUnfree = true;
-            };
-          in {
-            opencode = unstable.opencode;
-          })
-        ];
         # Pass inputs to configuration.nix
         specialArgs = { inherit inputs; };
         modules = [
+          {
+            nixpkgs.overlays = [
+              (_final: prev: let
+                system = prev.stdenv.hostPlatform.system;
+                unstable = import inputs.nixpkgs-unstable {
+                  inherit system;
+                  config.allowUnfree = true;
+                };
+              in {
+                opencode = unstable.opencode;
+              })
+            ];
+          }
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {
