@@ -30,6 +30,11 @@
 
   programs.nix-ld.enable = true;
 
+  programs.git = {
+    enable = true;
+    config.safe.directory = [ "/home/hazem/nixos-config" ];
+  };
+
   virtualisation.libvirtd.enable = true;
   virtualisation.containers.enable = true;
   virtualisation.docker.enable = true;
