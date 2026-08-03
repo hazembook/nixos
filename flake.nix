@@ -24,11 +24,6 @@
     # We do NOT use follows = "nixpkgs" here to ensure we hit the binary cache.
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,7 +36,6 @@
       nixpkgs,
       home-manager,
       noctalia,
-      emacs-overlay,
       plasma-manager,
       ...
     }@inputs:

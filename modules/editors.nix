@@ -1,7 +1,5 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 {
-  nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
-
   home-manager.users.hazem.home.packages = with pkgs; [
     # Editors
     neovim emacs30-pgtk
